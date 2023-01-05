@@ -15,16 +15,18 @@ form.addEventListener('submit', function(e){
 
     const msg_sucesso = `O numero ${numberA.value} é menor que ${numberB.value}.`
 
-    if (compara_numeros(numberA.value, numberB.value)){
-        const container_mensagen_sucesso = document.querySelector('.sucess-message')
-        container_mensagen_sucesso.innerHTML = msg_sucesso
-        document.querySelector('.sucess-message').style.display = 'block';
+        if (compara_numeros(numberA.value, numberB.value)){
+            const container_mensagen_sucesso = document.querySelector('.sucess-message')
+            container_mensagen_sucesso.innerHTML = msg_sucesso
+            document.querySelector('.sucess-message').style.display = 'block';
+    
 
-
-    } else {
-        numberB.style.border = '1px solid red';
-        document.querySelector('.error-message').style.display = 'block';
-    }
+    
+        } else {
+                numberB.style.border = '1px solid red';
+                document.querySelector('.error-message').style.display = 'block';
+        }
+    
 })
 
 numberB.addEventListener('keyup', function(e){
@@ -33,6 +35,20 @@ numberB.addEventListener('keyup', function(e){
     if (!form_valido){
         numberB.classList.add('error');
         document.querySelector('.error-message').style.display = 'block';
+        document.querySelector('.sucess-message').style.display = 'none';
+    } else {
+        numberB.classList.remove('error');
+        document.querySelector('.error-message').style.display = 'none';
+    }
+});
+
+numberA.addEventListener('keyup', function(e){
+    form_valido = compara_numeros(e.target.value, numberB.value)
+
+    if (!form_valido){
+        numberB.classList.add('error');
+        document.querySelector('.error-message').style.display = 'block';
+        document.querySelector('.sucess-message').style.display = 'none';
     } else {
         numberB.classList.remove('error');
         document.querySelector('.error-message').style.display = 'none';
